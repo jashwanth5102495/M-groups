@@ -7,16 +7,29 @@ import { businesses } from '../../data/businesses';
 export const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [canPlay, setCanPlay] = useState(() => !!sessionStorage.getItem('introPlayed'));
+
+  // Wait for intro to finish before enabling animations and slider
+  useEffect(() => {
+    if (canPlay) return;
+    const checkInterval = setInterval(() => {
+      if (sessionStorage.getItem('introPlayed')) {
+        setCanPlay(true);
+        clearInterval(checkInterval);
+      }
+    }, 500);
+    return () => clearInterval(checkInterval);
+  }, [canPlay]);
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % businesses.length);
   }, []);
 
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying || !canPlay) return;
     const interval = setInterval(nextSlide, 5000);
     return () => clearInterval(interval);
-  }, [isPlaying, nextSlide]);
+  }, [isPlaying, canPlay, nextSlide]);
 
   const togglePlay = () => setIsPlaying(!isPlaying);
 
@@ -137,16 +150,16 @@ export const Hero = () => {
                     className="absolute top-0 left-0 h-full bg-[#d68a28] transition-all duration-300"
                     style={{ width: index < currentIndex ? '100%' : '0%' }}
                   />
-                  {index === currentIndex && isPlaying && (
+                  {index === currentIndex && isPlaying && canPlay && (
                     <motion.div 
-                      key={`progress-${currentIndex}`}
+                      key={`progress-${currentIndex}-${canPlay}`}
                       className="absolute top-0 left-0 h-full bg-[#d68a28]"
                       initial={{ width: '0%' }}
                       animate={{ width: '100%' }}
                       transition={{ duration: 5, ease: "linear" }}
                     />
                   )}
-                  {index === currentIndex && !isPlaying && (
+                  {index === currentIndex && (!isPlaying || !canPlay) && (
                     <div className="absolute top-0 left-0 h-full bg-[#d68a28] w-full" />
                   )}
                 </div>
