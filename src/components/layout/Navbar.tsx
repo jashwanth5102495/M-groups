@@ -30,13 +30,16 @@ export const Navbar = () => {
   const borderColor = isLight ? 'border-black/50 hover:border-[#c69a53] text-black hover:text-[#c69a53]' : 'border-white/50 hover:border-accent text-white hover:text-white hover:bg-accent';
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
-        isScrolled 
-          ? 'bg-black/75 backdrop-blur-md border-b border-white/10 py-4' 
-          : 'bg-transparent py-6'
-      }`}
-    >
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
+          isMobileMenuOpen
+            ? 'bg-transparent py-4'
+            : isScrolled 
+              ? 'bg-[#020202]/80 backdrop-blur-md border-b border-white/10 py-4' 
+              : 'bg-transparent py-6'
+        }`}
+      >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         
         {/* Desktop Left Nav */}
@@ -119,38 +122,40 @@ export const Navbar = () => {
           {isMobileMenuOpen ? <X size={26} strokeWidth={1.5} /> : <Menu size={26} strokeWidth={1.5} />}
         </button>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="fixed inset-0 bg-primary z-40 flex flex-col items-center justify-center space-y-8"
-            >
-              {[...leftLinks].map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-2xl font-serif tracking-widest ${
-                    location.pathname === link.path ? 'text-accent' : 'text-secondary'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <Link
-                to="/contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-8 px-8 py-3 border border-white/50 text-white tracking-widest uppercase transition-colors hover:bg-accent hover:border-accent rounded-[2px]"
-              >
-                Get in Touch
-              </Link>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Mobile Menu logic moved outside header */}
       </div>
     </header>
+
+    <AnimatePresence>
+      {isMobileMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="fixed inset-0 bg-[#050505] z-40 flex flex-col items-center justify-center space-y-8 h-[100dvh] w-full"
+        >
+          {[...leftLinks].map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`text-2xl font-serif tracking-widest ${
+                location.pathname === link.path ? 'text-accent' : 'text-white/90'
+              }`}
+            >
+              {link.name}
+            </Link>
+          ))}
+          <Link
+            to="/contact"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="mt-8 px-8 py-3 border border-white/50 text-white tracking-widest uppercase transition-colors hover:bg-accent hover:border-accent rounded-[2px]"
+          >
+            Get in Touch
+          </Link>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </>
   );
 };

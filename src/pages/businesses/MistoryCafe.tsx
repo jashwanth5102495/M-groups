@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransition } from '../../components/ui/PageTransition';
-import { Phone, Mail, MapPin, ChefHat, Leaf, Star, ChevronDown, ChevronLeft, ChevronRight, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, ChefHat, Leaf, Star, ChevronDown, ChevronLeft, ChevronRight, AtSign } from 'lucide-react';
 
 const cafeDishes = [
   { name: "Filter Coffee", price: "₹90" },
@@ -658,7 +658,7 @@ export const MistoryCafe = () => {
                 </div>
                 <div className="flex items-center gap-6">
                   <div className="w-10 h-10 rounded-full border border-[#d4a373]/30 flex items-center justify-center text-[#d4a373] shrink-0">
-                    <Instagram size={16} />
+                    <AtSign size={16} />
                   </div>
                   <a href="https://instagram.com/__roaster__cafe___" target="_blank" rel="noreferrer" className="text-white/90 text-sm tracking-wide hover:text-[#d4a373] transition-colors">
                     @__roaster__cafe___

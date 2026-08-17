@@ -69,7 +69,7 @@ export const IntroSequence = ({ onComplete }: IntroSequenceProps) => {
     const fps = 30;
     const frameInterval = 1000 / fps;
     
-    const drawImageCover = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, canvasWidth: number, canvasHeight: number) => {
+    const drawImageContain = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, canvasWidth: number, canvasHeight: number) => {
       // Calculate aspect ratios
       const imgRatio = img.width / img.height;
       const canvasRatio = canvasWidth / canvasHeight;
@@ -80,16 +80,19 @@ export const IntroSequence = ({ onComplete }: IntroSequenceProps) => {
       let offsetY = 0;
       
       if (imgRatio > canvasRatio) {
-        // Image is wider than canvas
-        drawWidth = canvasHeight * imgRatio;
-        offsetX = (canvasWidth - drawWidth) / 2;
-      } else {
-        // Image is taller than canvas
+        // Image is wider than canvas, constrain by width
+        drawWidth = canvasWidth;
         drawHeight = canvasWidth / imgRatio;
         offsetY = (canvasHeight - drawHeight) / 2;
+      } else {
+        // Image is taller than canvas, constrain by height
+        drawHeight = canvasHeight;
+        drawWidth = canvasHeight * imgRatio;
+        offsetX = (canvasWidth - drawWidth) / 2;
       }
       
-      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+      ctx.fillStyle = '#020202';
+      ctx.fillRect(0, 0, canvasWidth, canvasHeight);
       ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
     };
     
@@ -108,7 +111,7 @@ export const IntroSequence = ({ onComplete }: IntroSequenceProps) => {
         
         const img = imagesRef.current[currentFrame];
         if (img && img.complete && img.naturalWidth !== 0) {
-          drawImageCover(ctx, img, canvas.width, canvas.height);
+          drawImageContain(ctx, img, canvas.width, canvas.height);
         }
         
         currentFrame++;
