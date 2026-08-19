@@ -12,6 +12,7 @@ import { MistoryFamilyRestaurant } from './pages/businesses/MistoryFamilyRestaur
 import { MFarms } from './pages/businesses/MFarms';
 import { MInteriors } from './pages/businesses/MInteriors';
 import { MRealEstate } from './pages/businesses/MRealEstate';
+import { MGBlock } from './pages/businesses/MGBlock';
 import { Projects } from './pages/Projects';
 import { Gallery } from './pages/Gallery';
 import { Contact } from './pages/Contact';
@@ -32,6 +33,7 @@ function AnimatedRoutes() {
         <Route path="/businesses/m-interiors" element={<MInteriors />} />
         <Route path="/m-real-estate" element={<MRealEstate />} />
         <Route path="/businesses/m-real-estate" element={<MRealEstate />} />
+        <Route path="/businesses/mg-block" element={<MGBlock />} />
         <Route path="/businesses/:id" element={<BusinessDetail />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/gallery" element={<Gallery />} />

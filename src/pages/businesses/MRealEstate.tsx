@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransition } from '../../components/ui/PageTransition';
 import { MapSection } from '../../components/ui/MapSection';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
@@ -17,6 +18,8 @@ const staggerContainer = {
 };
 
 export const MRealEstate = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
   return (
     <PageTransition>
       <div className="w-full min-h-screen bg-[#faf9f6] text-[#111] font-sans selection:bg-black selection:text-white">
@@ -53,15 +56,15 @@ export const MRealEstate = () => {
                 variants={fadeUp}
                 className="text-5xl md:text-6xl lg:text-[76px] leading-[1.05] font-serif tracking-tight text-[#111] mb-6"
               >
-                Spaces Designed <br />
-                for Better Living.
+                Prime Land & <br />
+                Properties.
               </motion.h1>
               
               <motion.p 
                 variants={fadeUp}
                 className="text-[#444] text-sm md:text-base leading-relaxed max-w-md mb-10 font-medium"
               >
-                Explore exceptional residences and thoughtfully crafted developments where architecture, comfort, and timeless design come together.
+                Explore exceptional plots, strategic rental lands, premium lease properties, and scenic farm lands tailored for your future.
               </motion.p>
               
               <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-16">
@@ -112,11 +115,11 @@ export const MRealEstate = () => {
                 FEATURED PROPERTIES
               </motion.span>
               <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl lg:text-[56px] leading-[1.1] font-serif tracking-tight text-[#111] mb-8">
-                Spaces Worth <br/>
-                Coming Home To.
+                Invest in Your <br/>
+                Future.
               </motion.h2>
               <motion.p variants={fadeUp} className="text-[#555] text-sm md:text-base leading-relaxed max-w-lg font-medium">
-                Explore a curated collection of thoughtfully designed residences and properties, selected for their location, architecture, quality, and lasting value.
+                Discover a curated collection of prime plots, agricultural farm lands, and strategic properties available for rent or lease.
               </motion.p>
             </motion.div>
 
@@ -126,26 +129,32 @@ export const MRealEstate = () => {
               whileInView="show"
               viewport={{ once: true, margin: "-100px" }}
               variants={staggerContainer}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12"
+              className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12"
             >
               {[
                 { 
-                  name: "Modern Villa", 
-                  location: "Bangalore, Karnataka", 
-                  details: "4 BHK · 3,200 sq.ft.", 
-                  img: "https://images.unsplash.com/photo-1613490908592-fd5e679a973d?q=80&w=800&auto=format&fit=crop" 
+                  name: "Plots", 
+                  location: "Premium Locations", 
+                  details: "Residential & Commercial Plots", 
+                  img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800&auto=format&fit=crop" 
                 },
                 { 
-                  name: "Luxury Residence", 
-                  location: "Bangalore, Karnataka", 
-                  details: "3 BHK · 2,450 sq.ft.", 
-                  img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" 
+                  name: "Rental Land", 
+                  location: "Strategic Areas", 
+                  details: "Short & Long-term Rentals", 
+                  img: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=800&auto=format&fit=crop" 
                 },
                 { 
-                  name: "Contemporary Home", 
-                  location: "Mysore, Karnataka", 
-                  details: "3 BHK · 1,850 sq.ft.", 
-                  img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" 
+                  name: "Lease Properties", 
+                  location: "Prime Business Hubs", 
+                  details: "Commercial & Industrial Leases", 
+                  img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop" 
+                },
+                { 
+                  name: "Farm Lands", 
+                  location: "Scenic Countryside", 
+                  details: "Agriculture & Weekend Farming", 
+                  img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop" 
                 }
               ].map((prop, idx) => (
                 <motion.div key={idx} variants={fadeUp} className="group cursor-pointer flex flex-col">
@@ -184,16 +193,49 @@ export const MRealEstate = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="mt-24 flex justify-center"
             >
-              <a href="#properties" className="inline-flex items-center gap-4 border-b-2 border-[#111] pb-2 text-sm tracking-[0.15em] uppercase font-bold text-[#111] hover:text-[#8b7355] hover:border-[#8b7355] transition-colors">
+              <button onClick={() => setShowPopup(true)} className="inline-flex items-center gap-4 border-b-2 border-[#111] pb-2 text-sm tracking-[0.15em] uppercase font-bold text-[#111] hover:text-[#8b7355] hover:border-[#8b7355] transition-colors cursor-pointer">
                 View All Properties
                 <ArrowRight size={16} />
-              </a>
+              </button>
             </motion.div>
 
           </div>
         </section>
         
         <MapSection />
+
+        {/* Popup */}
+        <AnimatePresence>
+          {showPopup && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+              onClick={() => setShowPopup(false)}
+            >
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="bg-white p-10 max-w-md w-full rounded-[2px] shadow-2xl text-center relative"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="w-16 h-[2px] bg-[#8b7355] mx-auto mb-6"></div>
+                <h3 className="text-2xl font-serif text-[#111] mb-4">Properties Coming Soon</h3>
+                <p className="text-[#555] leading-relaxed mb-8">
+                  Our comprehensive list of properties is currently being prepared and will be listed here shortly. Stay tuned!
+                </p>
+                <button 
+                  onClick={() => setShowPopup(false)}
+                  className="bg-[#111] text-white px-8 py-3 text-xs tracking-widest uppercase font-medium hover:bg-[#8b7355] transition-colors"
+                >
+                  Close
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </PageTransition>
