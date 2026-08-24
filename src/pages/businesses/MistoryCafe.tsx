@@ -368,7 +368,7 @@ export const MistoryCafe = () => {
                 <div className="flex flex-wrap gap-4 mb-16">
                   <a href="https://resto-pilot-frontend-gamma.vercel.app/order/mystery-roaster-cafe-346" target="_blank" rel="noreferrer" className="inline-block bg-[#d4a373] hover:bg-[#c29161] text-[#070504] px-8 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors rounded-sm">
                     ORDER NOW
-                  </a>>
+                  </a>
                   <button onClick={() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })} className="border border-[#d4a373] text-[#d4a373] hover:bg-[#d4a373] hover:text-[#070504] px-8 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors rounded-sm">
                     EXPLORE MENU
                   </button>
