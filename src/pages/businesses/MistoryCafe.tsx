@@ -277,23 +277,6 @@ export const MistoryCafe = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleBooking = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name'),
-      phone: formData.get('phone'),
-      email: formData.get('email'),
-      date: formData.get('date'),
-      time: formData.get('time'),
-      guests: formData.get('guests'),
-      request: formData.get('request'),
-    };
-
-    const text = `*Cafe Table Reservation*\n\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Date:* ${data.date}\n*Time:* ${data.time}\n*Guests:* ${data.guests}\n*Special Request:* ${data.request || 'None'}`;
-    const whatsappUrl = `https://wa.me/919743399992?text=${encodeURIComponent(text)}`;
-    window.open(whatsappUrl, '_blank');
-  };
 
   const currentItems = fullMenuData[activeFilter] || [];
   const midIndex = Math.ceil(currentItems.length / 2);
@@ -383,9 +366,9 @@ export const MistoryCafe = () => {
                 </p>
 
                 <div className="flex flex-wrap gap-4 mb-16">
-                  <button onClick={() => document.getElementById('reservation')?.scrollIntoView({ behavior: 'smooth' })} className="bg-[#d4a373] hover:bg-[#c29161] text-[#070504] px-8 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors rounded-sm">
-                    BOOK A TABLE
-                  </button>
+                  <a href="https://resto-pilot-frontend-gamma.vercel.app/order/mystery-roaster-cafe-346" target="_blank" rel="noreferrer" className="inline-block bg-[#d4a373] hover:bg-[#c29161] text-[#070504] px-8 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors rounded-sm">
+                    ORDER NOW
+                  </a>>
                   <button onClick={() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })} className="border border-[#d4a373] text-[#d4a373] hover:bg-[#d4a373] hover:text-[#070504] px-8 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors rounded-sm">
                     EXPLORE MENU
                   </button>
@@ -634,7 +617,7 @@ export const MistoryCafe = () => {
             {/* Left Info */}
             <div className="lg:w-5/12 flex flex-col">
               <h2 className="text-5xl md:text-6xl font-serif text-white uppercase tracking-wide leading-tight mb-8">
-                BOOK YOUR <br/> <span className="text-[#d4a373]">TABLE</span>
+                ORDER <br/> <span className="text-[#d4a373]">ONLINE</span>
               </h2>
               
               <div className="flex items-center gap-4 mb-8">
@@ -646,7 +629,7 @@ export const MistoryCafe = () => {
               </div>
 
               <p className="text-white/60 text-sm leading-relaxed max-w-sm mb-12">
-                Reserve your table and enjoy a memorable dining experience.
+                Order your favorite dishes online for a quick pickup or seamless delivery experience.
               </p>
 
               <div className="flex flex-col gap-6">
@@ -676,11 +659,11 @@ export const MistoryCafe = () => {
               </div>
             </div>
 
-            {/* Right Form */}
+            {/* Right Action */}
             <div className="lg:w-7/12 w-full">
-              <div className="bg-[#0f0a07] border border-white/10 rounded-xl p-8 md:p-12 relative">
+              <div className="bg-[#0f0a07] border border-white/10 rounded-xl p-8 md:p-12 relative flex flex-col items-center justify-center min-h-[400px] text-center">
                 <div className="text-center mb-10">
-                  <h3 className="font-serif text-xl text-[#d4a373] uppercase tracking-widest mb-4">RESERVATION</h3>
+                  <h3 className="font-serif text-2xl text-[#d4a373] uppercase tracking-widest mb-4">CRAVING SOMETHING?</h3>
                   <div className="flex items-center justify-center gap-4">
                     <div className="h-[1px] w-8 bg-[#d4a373]/50"></div>
                     <div className="text-[#d4a373]">
@@ -690,46 +673,18 @@ export const MistoryCafe = () => {
                   </div>
                 </div>
 
-                <form onSubmit={handleBooking} className="flex flex-col gap-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input required name="name" type="text" placeholder="Your Name" className="bg-transparent border border-white/15 px-4 py-3.5 text-sm text-white focus:outline-none focus:border-[#d4a373] transition-colors placeholder:text-white/30 rounded-md" />
-                    <input required name="phone" type="tel" placeholder="Phone Number" className="bg-transparent border border-white/15 px-4 py-3.5 text-sm text-white focus:outline-none focus:border-[#d4a373] transition-colors placeholder:text-white/30 rounded-md" />
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input required name="email" type="email" placeholder="Email Address" className="bg-transparent border border-white/15 px-4 py-3.5 text-sm text-white focus:outline-none focus:border-[#d4a373] transition-colors placeholder:text-white/30 rounded-md" />
-                    <div className="relative">
-                      <input required name="date" type="date" className="w-full bg-transparent border border-white/15 px-4 py-3.5 text-sm text-white/50 focus:text-white focus:outline-none focus:border-[#d4a373] transition-colors rounded-md [color-scheme:dark]" />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="relative">
-                      <select required name="time" className="w-full bg-transparent border border-white/15 px-4 py-3.5 text-sm text-white/50 focus:text-white focus:outline-none focus:border-[#d4a373] transition-colors rounded-md appearance-none">
-                        <option value="" disabled selected hidden>Time</option>
-                        <option value="18:00" className="bg-[#0f0a07]">18:00</option>
-                        <option value="19:00" className="bg-[#0f0a07]">19:00</option>
-                        <option value="20:00" className="bg-[#0f0a07]">20:00</option>
-                        <option value="21:00" className="bg-[#0f0a07]">21:00</option>
-                      </select>
-                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none" size={16} />
-                    </div>
-                    <div className="relative">
-                      <select required name="guests" className="w-full bg-transparent border border-white/15 px-4 py-3.5 text-sm text-white/50 focus:text-white focus:outline-none focus:border-[#d4a373] transition-colors rounded-md appearance-none">
-                        <option value="" disabled selected hidden>Guests</option>
-                        <option value="1 Person" className="bg-[#0f0a07]">1 Person</option>
-                        <option value="2 People" className="bg-[#0f0a07]">2 People</option>
-                        <option value="3 People" className="bg-[#0f0a07]">3 People</option>
-                        <option value="4 People" className="bg-[#0f0a07]">4 People</option>
-                        <option value="5+ People" className="bg-[#0f0a07]">5+ People</option>
-                      </select>
-                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none" size={16} />
-                    </div>
-                  </div>
-                  <textarea name="request" rows={3} placeholder="Special Request" className="bg-transparent border border-white/15 px-4 py-3.5 text-sm text-white focus:outline-none focus:border-[#d4a373] transition-colors placeholder:text-white/30 resize-none rounded-md mt-2"></textarea>
-                  
-                  <button type="submit" className="w-full bg-[#d4a373] hover:bg-[#c29161] text-[#070504] py-4 text-[12px] font-bold tracking-widest uppercase transition-colors rounded-md mt-4">
-                    BOOK A TABLE NOW
-                  </button>
-                </form>
+                <p className="text-white/60 mb-10 max-w-md">
+                  Explore our full menu online and place your order instantly. Fresh, hot, and ready when you are!
+                </p>
+
+                <a 
+                  href="https://resto-pilot-frontend-gamma.vercel.app/order/mystery-roaster-cafe-346" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="bg-[#d4a373] hover:bg-[#c29161] text-[#070504] px-12 py-5 text-sm font-bold tracking-widest uppercase transition-colors rounded-md inline-block shadow-lg shadow-[#d4a373]/20"
+                >
+                  ORDER NOW
+                </a>
               </div>
             </div>
 
