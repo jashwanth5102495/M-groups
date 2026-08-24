@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransition } from '../../components/ui/PageTransition';
-import { Phone, Mail, MapPin, ChefHat, Leaf, Star, ChevronDown, ChevronLeft, ChevronRight, AtSign } from 'lucide-react';
+import { Phone, MapPin, ChefHat, Leaf, Star, ChevronLeft, ChevronRight, AtSign } from 'lucide-react';
 
 const cafeDishes = [
   { name: "Filter Coffee", price: "₹90" },
