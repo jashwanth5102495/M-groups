@@ -11,16 +11,6 @@ export interface Business {
 
 export const businesses: Business[] = [
   {
-    id: 'mistory-roster-cafe',
-    name: 'Mistory Roster Café',
-    category: 'Hospitality',
-    description: 'Creating spaces where food, design and experience come together.',
-    status: 'Existing',
-    route: '/businesses/mistory-roster-cafe',
-    image: '/landing/Mistory Roster Café.webp',
-    featured: true
-  },
-  {
     id: 'ms-builders',
     name: 'MS Builders & Developers',
     category: 'Construction',
@@ -31,6 +21,16 @@ export const businesses: Business[] = [
     featured: true
   },
   {
+    id: 'mistory-roster-cafe',
+    name: 'Mistory Roster Café',
+    category: 'Hospitality',
+    description: 'Creating spaces where food, design and experience come together.',
+    status: 'Existing',
+    route: '/businesses/mistory-roster-cafe',
+    image: '/landing/Mistory Roster Café.webp',
+    featured: true
+  },
+  {
     id: 'm-farms',
     name: 'M Farms',
     category: 'Agriculture',
@@ -38,16 +38,6 @@ export const businesses: Business[] = [
     status: 'Existing',
     route: '/businesses/m-farms',
     image: '/landing/M Farms.webp',
-    featured: true
-  },
-  {
-    id: 'm-interiors',
-    name: 'M Interiors',
-    category: 'Interior Design',
-    description: 'Spaces with character and sophisticated materials.',
-    status: 'Existing',
-    route: '/businesses/m-interiors',
-    image: '/landing/M Interiors.webp',
     featured: true
   },
   {
@@ -72,9 +62,9 @@ export const businesses: Business[] = [
   },
   {
     id: 'mg-block',
-    name: 'MG Block',
-    category: 'Manufacturing',
-    description: 'Hollow block manufacturing for modern construction.',
+    name: 'M Block & Interiors',
+    category: 'Manufacturing & Design',
+    description: 'Hollow block manufacturing and sophisticated interior spaces.',
     status: 'Existing',
     route: '/businesses/mg-block',
     image: '/landing/MG Block.webp',
