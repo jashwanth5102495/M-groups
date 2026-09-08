@@ -96,17 +96,7 @@ export const MistoryFamilyRestaurant = () => {
           </div>
 
           <div className="relative z-10 container mx-auto px-6 text-center flex flex-col items-center -mt-40">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="flex items-center gap-3 mb-6"
-            >
-              <div className="w-2 h-2 rounded-full bg-[#ef4444] animate-pulse" />
-              <span className="text-xs tracking-[0.3em] font-bold uppercase text-[#ef4444] border border-[#ef4444]/30 bg-[#ef4444]/10 px-4 py-1.5 rounded-full">
-                Coming Soon
-              </span>
-            </motion.div>
+
             
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
@@ -255,6 +245,91 @@ export const MistoryFamilyRestaurant = () => {
               </div>
 
             </div>
+          </div>
+        </section>
+
+        {/* Gallery Section */}
+        <section className="py-24 bg-[#0a0a0a] relative z-10 border-t border-white/5">
+          <div className="container mx-auto px-6 lg:px-12">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="mb-16 text-center"
+            >
+              <span className="text-[#d49942] text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase block mb-4">
+                Immersive Experience
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-serif text-white">
+                Gallery
+              </h2>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1 }}
+              className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
+            >
+              {[
+                "WhatsApp Image 2026-09-01 at 7.33.41 PM.webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (1).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (10).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (11).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (12).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (13).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (14).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (15).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (16).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (17).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (18).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (19).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (2).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (20).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (21).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (22).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (23).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (24).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (25).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (26).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (27).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (28).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (29).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (3).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (30).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (31).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (32).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (33).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (34).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (35).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (36).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (37).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (38).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (39).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (4).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (40).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (41).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (42).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (5).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (6).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (7).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (8).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (9).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM.webp"
+              ].map((img, idx) => (
+                <div key={idx} className="group relative overflow-hidden rounded-[2px] break-inside-avoid">
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-colors duration-500 pointer-events-none z-10" />
+                  <img 
+                    src={`/real/toWEBP/${img}`}
+                    alt={`Gallery Image ${idx + 1}`}
+                    loading="lazy"
+                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out origin-center" 
+                  />
+                </div>
+              ))}
+            </motion.div>
           </div>
         </section>
 

@@ -123,62 +123,36 @@ export const MRealEstate = () => {
               </motion.p>
             </motion.div>
 
-            {/* Properties Grid */}
+            {/* Properties Gallery (Masonry Layout) */}
             <motion.div 
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-100px" }}
               variants={staggerContainer}
-              className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12"
+              className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
             >
               {[
-                { 
-                  name: "Plots", 
-                  location: "Premium Locations", 
-                  details: "Residential & Commercial Plots", 
-                  img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800&auto=format&fit=crop" 
-                },
-                { 
-                  name: "Rental Land", 
-                  location: "Strategic Areas", 
-                  details: "Short & Long-term Rentals", 
-                  img: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=800&auto=format&fit=crop" 
-                },
-                { 
-                  name: "Lease Properties", 
-                  location: "Prime Business Hubs", 
-                  details: "Commercial & Industrial Leases", 
-                  img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop" 
-                },
-                { 
-                  name: "Farm Lands", 
-                  location: "Scenic Countryside", 
-                  details: "Agriculture & Weekend Farming", 
-                  img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop" 
-                }
-              ].map((prop, idx) => (
-                <motion.div key={idx} variants={fadeUp} className="group cursor-pointer flex flex-col">
-                  {/* Image Container */}
-                  <div className="w-full aspect-[4/3] rounded-[2px] overflow-hidden mb-8 relative">
-                    <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors duration-500 z-10" />
-                    <img 
-                      src={prop.img} 
-                      alt={prop.name} 
-                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out origin-center" 
-                    />
-                  </div>
+                "1000029604.jpg.webp", "1000029605.jpg.webp", "1000029606.jpg.webp", "1000029607.jpg.webp", 
+                "1000029608.jpg.webp", "1000029609.jpg.webp", "1000029610.jpg.webp", "1000029611.jpg.webp",
+                "1000029612.jpg.webp", "1000029613.jpg.webp", "1000029614.jpg.webp", "1000029615.jpg.webp",
+                "1000029616.jpg.webp", "1000029617.jpg.webp", "1000029618.jpg.webp", "1000029619.jpg (1).webp",
+                "1000029619.jpg.webp", "1000029620.jpg.webp", "1000029621.jpg.webp", "1000029622.jpg.webp",
+                "1000029623.jpg.webp", "1000029624.jpg.webp", "1000029625.jpg.webp", "1000029626.jpg.webp",
+                "1000029627.jpg.webp", "1000029628.jpg.webp", "1000029633.jpg.webp", "1000029634.jpg.webp"
+              ].map((img, idx) => (
+                <motion.div key={idx} variants={fadeUp} className="group cursor-pointer relative overflow-hidden rounded-[2px] break-inside-avoid">
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10 pointer-events-none" />
+                  <img 
+                    src={`/fam/toWEBP (1)/${img}`}
+                    alt={`Property image ${idx + 1}`}
+                    loading="lazy"
+                    className="w-full h-auto object-cover group-hover:scale-[1.05] transition-transform duration-700 ease-out origin-center" 
+                  />
                   
-                  {/* Card Content */}
-                  <div className="flex items-end justify-between px-2 transform group-hover:-translate-y-1 transition-transform duration-500 ease-out">
-                    <div className="flex flex-col">
-                      <h3 className="text-xl font-serif text-[#111] mb-2">{prop.name}</h3>
-                      <p className="text-[11px] font-bold tracking-[0.1em] uppercase text-[#666] mb-4">{prop.location}</p>
-                      <p className="text-sm text-[#888] font-medium">{prop.details}</p>
-                    </div>
-                    
-                    {/* Arrow Button */}
-                    <div className="w-10 h-10 rounded-full border border-[#ddd] flex items-center justify-center group-hover:bg-[#111] group-hover:border-[#111] transition-colors duration-500 shrink-0">
-                      <ArrowUpRight size={16} className="text-[#111] group-hover:text-white transition-colors duration-500" />
+                  {/* Subtle overlay icon on hover */}
+                  <div className="absolute bottom-4 right-4 z-20 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg">
+                      <ArrowUpRight size={18} className="text-[#111]" />
                     </div>
                   </div>
                 </motion.div>
