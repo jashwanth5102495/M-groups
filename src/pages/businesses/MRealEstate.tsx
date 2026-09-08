@@ -132,18 +132,55 @@ export const MRealEstate = () => {
               className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
             >
               {[
-                "1000029604.jpg.webp", "1000029605.jpg.webp", "1000029606.jpg.webp", "1000029607.jpg.webp", 
-                "1000029608.jpg.webp", "1000029609.jpg.webp", "1000029610.jpg.webp", "1000029611.jpg.webp",
-                "1000029612.jpg.webp", "1000029613.jpg.webp", "1000029614.jpg.webp", "1000029615.jpg.webp",
-                "1000029616.jpg.webp", "1000029617.jpg.webp", "1000029618.jpg.webp", "1000029619.jpg (1).webp",
-                "1000029619.jpg.webp", "1000029620.jpg.webp", "1000029621.jpg.webp", "1000029622.jpg.webp",
-                "1000029623.jpg.webp", "1000029624.jpg.webp", "1000029625.jpg.webp", "1000029626.jpg.webp",
-                "1000029627.jpg.webp", "1000029628.jpg.webp", "1000029633.jpg.webp", "1000029634.jpg.webp"
+                "WhatsApp Image 2026-09-01 at 7.33.41 PM.webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (1).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (10).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (11).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (12).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (13).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (14).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (15).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (16).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (17).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (18).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (19).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (2).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (20).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (21).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (22).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (23).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (24).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (25).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (26).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (27).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (28).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (29).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (3).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (30).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (31).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (32).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (33).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (34).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (35).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (36).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (37).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (38).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (39).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (4).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (40).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (41).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (42).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (5).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (6).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (7).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (8).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM (9).webp",
+                "WhatsApp Image 2026-09-01 at 7.33.53 PM.webp"
               ].map((img, idx) => (
                 <motion.div key={idx} variants={fadeUp} className="group cursor-pointer relative overflow-hidden rounded-[2px] break-inside-avoid">
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10 pointer-events-none" />
                   <img 
-                    src={`/fam/toWEBP (1)/${img}`}
+                    src={`/real/toWEBP/${img}`}
                     alt={`Property image ${idx + 1}`}
                     loading="lazy"
                     className="w-full h-auto object-cover group-hover:scale-[1.05] transition-transform duration-700 ease-out origin-center" 
