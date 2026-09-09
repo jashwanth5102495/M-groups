@@ -1,8 +1,55 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransition } from '../../components/ui/PageTransition';
 import { MapSection } from '../../components/ui/MapSection';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const galleryImages = [
+  "WhatsApp Image 2026-09-01 at 7.33.41 PM.webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (1).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (10).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (11).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (12).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (13).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (14).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (15).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (16).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (17).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (18).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (19).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (2).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (20).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (21).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (22).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (23).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (24).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (25).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (26).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (27).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (28).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (29).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (3).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (30).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (31).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (32).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (33).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (34).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (35).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (36).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (37).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (38).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (39).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (4).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (40).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (41).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (42).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (5).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (6).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (7).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (8).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM (9).webp",
+  "WhatsApp Image 2026-09-01 at 7.33.53 PM.webp"
+];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -19,6 +66,8 @@ const staggerContainer = {
 
 export const MRealEstate = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null);
+  const galleryScrollRef = useRef<HTMLDivElement>(null);
 
   return (
     <PageTransition>
@@ -123,78 +172,103 @@ export const MRealEstate = () => {
               </motion.p>
             </motion.div>
 
-            {/* Properties Gallery (Masonry Layout) */}
-            <motion.div 
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-              className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
-            >
-              {[
-                "WhatsApp Image 2026-09-01 at 7.33.41 PM.webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (1).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (10).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (11).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (12).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (13).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (14).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (15).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (16).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (17).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (18).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (19).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (2).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (20).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (21).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (22).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (23).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (24).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (25).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (26).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (27).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (28).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (29).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (3).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (30).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (31).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (32).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (33).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (34).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (35).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (36).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (37).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (38).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (39).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (4).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (40).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (41).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (42).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (5).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (6).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (7).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (8).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM (9).webp",
-                "WhatsApp Image 2026-09-01 at 7.33.53 PM.webp"
-              ].map((img, idx) => (
-                <motion.div key={idx} variants={fadeUp} className="group cursor-pointer relative overflow-hidden rounded-[2px] break-inside-avoid">
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10 pointer-events-none" />
-                  <img 
-                    src={`/real/toWEBP/${img}`}
-                    alt={`Property image ${idx + 1}`}
-                    loading="lazy"
-                    className="w-full h-auto object-cover group-hover:scale-[1.05] transition-transform duration-700 ease-out origin-center" 
-                  />
-                  
-                  {/* Subtle overlay icon on hover */}
-                  <div className="absolute bottom-4 right-4 z-20 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg">
-                      <ArrowUpRight size={18} className="text-[#111]" />
+            {/* Properties Gallery (Horizontal Scroll) */}
+            <div className="relative">
+              <div 
+                ref={galleryScrollRef}
+                className="flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+              >
+                {galleryImages.map((img, idx) => (
+                  <motion.div 
+                    key={idx} 
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: Math.min(idx, 10) * 0.05 }}
+                    className="flex-none w-[280px] sm:w-[320px] h-[400px] group relative overflow-hidden rounded-[4px] snap-center cursor-pointer"
+                    onClick={() => setSelectedGalleryIndex(idx)}
+                  >
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10 pointer-events-none" />
+                    <img 
+                      src={`/real/toWEBP/${img}`}
+                      alt={`Property image ${idx + 1}`}
+                      loading={idx < 4 ? "eager" : "lazy"}
+                      className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-700 ease-out origin-center" 
+                    />
+                    
+                    {/* Subtle overlay icon on hover */}
+                    <div className="absolute bottom-4 right-4 z-20 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                      <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg">
+                        <ArrowUpRight size={18} className="text-[#111]" />
+                      </div>
                     </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Gallery Modal */}
+            <AnimatePresence>
+              {selectedGalleryIndex !== null && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-[110] flex flex-col items-center justify-center bg-black/95 p-4 sm:p-8"
+                >
+                  <button
+                    onClick={() => setSelectedGalleryIndex(null)}
+                    className="absolute top-6 right-6 text-white/70 hover:text-white z-[120] p-2 bg-black/50 rounded-full"
+                  >
+                    <X size={24} />
+                  </button>
+
+                  {/* Main Image */}
+                  <div className="relative w-full max-w-5xl h-[60vh] sm:h-[70vh] flex items-center justify-center mb-6">
+                    <motion.img
+                      key={selectedGalleryIndex}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                      src={`/real/toWEBP/${galleryImages[selectedGalleryIndex]}`}
+                      alt="Gallery Selected"
+                      className="max-w-full max-h-full object-contain rounded-md"
+                    />
+                    
+                    {/* Navigation Arrows */}
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setSelectedGalleryIndex(prev => prev === 0 ? galleryImages.length - 1 : prev! - 1); }}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors z-[120]"
+                    >
+                      <ChevronLeft size={24} />
+                    </button>
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setSelectedGalleryIndex(prev => prev === galleryImages.length - 1 ? 0 : prev! + 1); }}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors z-[120]"
+                    >
+                      <ChevronRight size={24} />
+                    </button>
+                  </div>
+
+                  {/* Thumbnails */}
+                  <div className="w-full max-w-5xl overflow-x-auto flex gap-2 pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    {galleryImages.map((img, idx) => (
+                      <div
+                        key={idx}
+                        onClick={() => setSelectedGalleryIndex(idx)}
+                        className={`flex-none w-20 h-20 sm:w-24 sm:h-24 cursor-pointer rounded-md overflow-hidden transition-all duration-300 ${selectedGalleryIndex === idx ? 'ring-2 ring-white opacity-100 scale-105' : 'opacity-40 hover:opacity-100'}`}
+                      >
+                        <img
+                          src={`/real/toWEBP/${img}`}
+                          alt={`Thumbnail ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ))}
                   </div>
                 </motion.div>
-              ))}
-            </motion.div>
+              )}
+            </AnimatePresence>
 
             {/* CTA */}
             <motion.div 

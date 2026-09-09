@@ -1,7 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransition } from '../../components/ui/PageTransition';
-import { ArrowRight, CheckCircle, MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { ArrowRight, CheckCircle, MapPin, Phone, Mail, Clock, X, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const galleryImages = [
+  "1000029604.jpg.webp", "1000029605.jpg.webp", "1000029606.jpg.webp", "1000029607.jpg.webp", 
+  "1000029608.jpg.webp", "1000029609.jpg.webp", "1000029610.jpg.webp", "1000029611.jpg.webp",
+  "1000029612.jpg.webp", "1000029613.jpg.webp", "1000029614.jpg.webp", "1000029615.jpg.webp",
+  "1000029616.jpg.webp", "1000029617.jpg.webp", "1000029618.jpg.webp", "1000029619.jpg (1).webp",
+  "1000029619.jpg.webp", "1000029620.jpg.webp", "1000029621.jpg.webp", "1000029622.jpg.webp",
+  "1000029623.jpg.webp", "1000029624.jpg.webp", "1000029625.jpg.webp", "1000029626.jpg.webp",
+  "1000029627.jpg.webp", "1000029628.jpg.webp", "1000029633.jpg.webp", "1000029634.jpg.webp"
+];
 
 const dishes = [
   {
@@ -44,6 +54,8 @@ const dishes = [
 
 export const MistoryFamilyRestaurant = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null);
+  const galleryScrollRef = useRef<HTMLDivElement>(null);
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [bookingData, setBookingData] = useState({
     name: '',
@@ -266,33 +278,96 @@ export const MistoryFamilyRestaurant = () => {
               </h2>
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1 }}
-              className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
-            >
-              {[
-                "1000029604.jpg.webp", "1000029605.jpg.webp", "1000029606.jpg.webp", "1000029607.jpg.webp", 
-                "1000029608.jpg.webp", "1000029609.jpg.webp", "1000029610.jpg.webp", "1000029611.jpg.webp",
-                "1000029612.jpg.webp", "1000029613.jpg.webp", "1000029614.jpg.webp", "1000029615.jpg.webp",
-                "1000029616.jpg.webp", "1000029617.jpg.webp", "1000029618.jpg.webp", "1000029619.jpg (1).webp",
-                "1000029619.jpg.webp", "1000029620.jpg.webp", "1000029621.jpg.webp", "1000029622.jpg.webp",
-                "1000029623.jpg.webp", "1000029624.jpg.webp", "1000029625.jpg.webp", "1000029626.jpg.webp",
-                "1000029627.jpg.webp", "1000029628.jpg.webp", "1000029633.jpg.webp", "1000029634.jpg.webp"
-              ].map((img, idx) => (
-                <div key={idx} className="group relative overflow-hidden rounded-[2px] break-inside-avoid">
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-colors duration-500 pointer-events-none z-10" />
-                  <img 
-                    src={`/fam/toWEBP (1)/${img}`}
-                    alt={`Gallery Image ${idx + 1}`}
-                    loading="lazy"
-                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out origin-center" 
-                  />
-                </div>
-              ))}
-            </motion.div>
+            {/* Horizontal Scrolling Gallery */}
+            <div className="relative">
+              <div 
+                ref={galleryScrollRef}
+                className="flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+              >
+                {galleryImages.map((img, idx) => (
+                  <motion.div 
+                    key={idx} 
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.05 }}
+                    className="flex-none w-[280px] sm:w-[320px] h-[400px] group relative overflow-hidden rounded-[4px] snap-center cursor-pointer"
+                    onClick={() => setSelectedGalleryIndex(idx)}
+                  >
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-colors duration-500 pointer-events-none z-10" />
+                    <img 
+                      src={`/fam/toWEBP (1)/${img}`}
+                      alt={`Gallery Image ${idx + 1}`}
+                      loading={idx < 4 ? "eager" : "lazy"}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out origin-center" 
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Gallery Modal */}
+            <AnimatePresence>
+              {selectedGalleryIndex !== null && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95 p-4 sm:p-8"
+                >
+                  <button
+                    onClick={() => setSelectedGalleryIndex(null)}
+                    className="absolute top-6 right-6 text-white/70 hover:text-white z-50 p-2 bg-black/50 rounded-full"
+                  >
+                    <X size={24} />
+                  </button>
+
+                  {/* Main Image */}
+                  <div className="relative w-full max-w-5xl h-[60vh] sm:h-[70vh] flex items-center justify-center mb-6">
+                    <motion.img
+                      key={selectedGalleryIndex}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                      src={`/fam/toWEBP (1)/${galleryImages[selectedGalleryIndex]}`}
+                      alt="Gallery Selected"
+                      className="max-w-full max-h-full object-contain rounded-md"
+                    />
+                    
+                    {/* Navigation Arrows */}
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setSelectedGalleryIndex(prev => prev === 0 ? galleryImages.length - 1 : prev! - 1); }}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors"
+                    >
+                      <ChevronLeft size={24} />
+                    </button>
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setSelectedGalleryIndex(prev => prev === galleryImages.length - 1 ? 0 : prev! + 1); }}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors"
+                    >
+                      <ChevronRight size={24} />
+                    </button>
+                  </div>
+
+                  {/* Thumbnails */}
+                  <div className="w-full max-w-5xl overflow-x-auto flex gap-2 pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    {galleryImages.map((img, idx) => (
+                      <div
+                        key={idx}
+                        onClick={() => setSelectedGalleryIndex(idx)}
+                        className={`flex-none w-20 h-20 sm:w-24 sm:h-24 cursor-pointer rounded-md overflow-hidden transition-all duration-300 ${selectedGalleryIndex === idx ? 'ring-2 ring-[#d49942] opacity-100 scale-105' : 'opacity-40 hover:opacity-100'}`}
+                      >
+                        <img
+                          src={`/fam/toWEBP (1)/${img}`}
+                          alt={`Thumbnail ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </section>
 
