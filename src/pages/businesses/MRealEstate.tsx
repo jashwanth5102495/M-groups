@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransition } from '../../components/ui/PageTransition';
 import { MapSection } from '../../components/ui/MapSection';
@@ -68,6 +68,20 @@ export const MRealEstate = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null);
   const galleryScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollInterval = setInterval(() => {
+      if (galleryScrollRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = galleryScrollRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          galleryScrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          galleryScrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+        }
+      }
+    }, 3000);
+    return () => clearInterval(scrollInterval);
+  }, []);
 
   return (
     <PageTransition>
@@ -190,7 +204,7 @@ export const MRealEstate = () => {
                   >
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10 pointer-events-none" />
                     <img 
-                      src={`/real/toWEBP/${img}`}
+                      src={`/real/toWEBP/${encodeURIComponent(img)}`}
                       alt={`Property image ${idx + 1}`}
                       loading={idx < 4 ? "eager" : "lazy"}
                       className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-700 ease-out origin-center" 
@@ -230,7 +244,7 @@ export const MRealEstate = () => {
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3 }}
-                      src={`/real/toWEBP/${galleryImages[selectedGalleryIndex]}`}
+                      src={`/real/toWEBP/${encodeURIComponent(galleryImages[selectedGalleryIndex])}`}
                       alt="Gallery Selected"
                       className="max-w-full max-h-full object-contain rounded-md"
                     />
@@ -259,7 +273,7 @@ export const MRealEstate = () => {
                         className={`flex-none w-20 h-20 sm:w-24 sm:h-24 cursor-pointer rounded-md overflow-hidden transition-all duration-300 ${selectedGalleryIndex === idx ? 'ring-2 ring-white opacity-100 scale-105' : 'opacity-40 hover:opacity-100'}`}
                       >
                         <img
-                          src={`/real/toWEBP/${img}`}
+                          src={`/real/toWEBP/${encodeURIComponent(img)}`}
                           alt={`Thumbnail ${idx + 1}`}
                           className="w-full h-full object-cover"
                         />

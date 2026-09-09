@@ -91,6 +91,20 @@ export const MistoryFamilyRestaurant = () => {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    const scrollInterval = setInterval(() => {
+      if (galleryScrollRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = galleryScrollRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          galleryScrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          galleryScrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+        }
+      }
+    }, 3000);
+    return () => clearInterval(scrollInterval);
+  }, []);
+
   return (
     <PageTransition>
       <div className="w-full min-h-screen bg-[#0a0a0a] text-[#e8e4db] font-sans selection:bg-[#d49942] selection:text-[#0a0a0a]">
@@ -116,7 +130,7 @@ export const MistoryFamilyRestaurant = () => {
               transition={{ duration: 1, delay: 0.4 }}
               className="text-5xl md:text-7xl lg:text-[80px] font-serif leading-[1.1] text-white tracking-tight mb-8 drop-shadow-2xl"
             >
-              Mistory Family <br /> Restaurant
+              MYSTERY FAMILY <br /> RESTAURANT
             </motion.h1>
             
             <motion.p
@@ -296,7 +310,7 @@ export const MistoryFamilyRestaurant = () => {
                   >
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-colors duration-500 pointer-events-none z-10" />
                     <img 
-                      src={`/fam/toWEBP (1)/${img}`}
+                      src={`/fam/toWEBP%20(1)/${encodeURIComponent(img)}`}
                       alt={`Gallery Image ${idx + 1}`}
                       loading={idx < 4 ? "eager" : "lazy"}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out origin-center" 
@@ -329,7 +343,7 @@ export const MistoryFamilyRestaurant = () => {
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3 }}
-                      src={`/fam/toWEBP (1)/${galleryImages[selectedGalleryIndex]}`}
+                      src={`/fam/toWEBP%20(1)/${encodeURIComponent(galleryImages[selectedGalleryIndex])}`}
                       alt="Gallery Selected"
                       className="max-w-full max-h-full object-contain rounded-md"
                     />
@@ -358,7 +372,7 @@ export const MistoryFamilyRestaurant = () => {
                         className={`flex-none w-20 h-20 sm:w-24 sm:h-24 cursor-pointer rounded-md overflow-hidden transition-all duration-300 ${selectedGalleryIndex === idx ? 'ring-2 ring-[#d49942] opacity-100 scale-105' : 'opacity-40 hover:opacity-100'}`}
                       >
                         <img
-                          src={`/fam/toWEBP (1)/${img}`}
+                          src={`/fam/toWEBP%20(1)/${encodeURIComponent(img)}`}
                           alt={`Thumbnail ${idx + 1}`}
                           className="w-full h-full object-cover"
                         />
@@ -491,7 +505,7 @@ export const MistoryFamilyRestaurant = () => {
                     <div className="flex flex-col gap-3 text-white/60 text-[13px]">
                       <div className="flex items-start gap-3">
                         <MapPin size={16} className="text-[#d49942] mt-0.5 shrink-0" />
-                        <span>Mistory Family Restaurant<br/>Devanahalli, Southegowdanahalli,<br/>Karnataka 562110</span>
+                        <span>MYSTERY FAMILY RESTAURANT<br/>NH44, Bulahalli Gate, Avathi,<br/>Devanahalli, Karnataka 562164</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <Phone size={16} className="text-[#d49942] shrink-0" />
