@@ -328,6 +328,7 @@ export const MistoryFamilyRestaurant = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95 p-4 sm:p-8"
+                  onClick={() => setSelectedGalleryIndex(null)}
                 >
                   <button
                     onClick={() => setSelectedGalleryIndex(null)}
@@ -337,7 +338,10 @@ export const MistoryFamilyRestaurant = () => {
                   </button>
 
                   {/* Main Image */}
-                  <div className="relative w-full max-w-5xl h-[60vh] sm:h-[70vh] flex items-center justify-center mb-6">
+                  <div 
+                    className="relative w-full max-w-5xl h-[60vh] sm:h-[70vh] flex items-center justify-center mb-6"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <motion.img
                       key={selectedGalleryIndex}
                       initial={{ opacity: 0, scale: 0.95 }}
@@ -364,7 +368,10 @@ export const MistoryFamilyRestaurant = () => {
                   </div>
 
                   {/* Thumbnails */}
-                  <div className="w-full max-w-5xl overflow-x-auto flex gap-2 pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  <div 
+                    className="w-full max-w-5xl overflow-x-auto flex gap-2 pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     {galleryImages.map((img, idx) => (
                       <div
                         key={idx}

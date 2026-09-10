@@ -186,7 +186,7 @@ export const MFarms = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'Vegetables', desc: 'Seasonal vegetables · Leafy greens · Root vegetables', text: 'Fresh, naturally cultivated vegetables grown with traditional farming practices.', img: '/farms/WhatsApp Image 2026-09-09 at 10.11.12 PM.jpeg' },
+              { title: 'Vegetables', desc: 'Seasonal vegetables · Leafy greens · Root vegetables', text: 'Fresh, naturally cultivated vegetables grown with traditional farming practices.', img: '/farms/vegetable_farm.jpg' },
               { title: 'Fruits', desc: 'Seasonal fruits · Orchard fruits · Fresh produce', text: 'Naturally grown seasonal fruits, cultivated with care using sustainable farming practices.', img: '/farms/WhatsApp Image 2026-09-09 at 10.11.15 PM.jpeg' },
               { title: 'Flowers', desc: 'Seasonal flowers · Garden flowers · Fresh blooms', text: 'Fresh flowers cultivated naturally for their beauty, fragrance, and quality.', img: '/farms/WhatsApp Image 2026-09-09 at 10.16.03 PM.jpeg' }
             ].map((prod, idx) => (
@@ -209,12 +209,12 @@ export const MFarms = () => {
           </div>
 
           <div className="flex justify-center mt-12">
-            <a href="https://wa.me/919743399992" target="_blank" rel="noopener noreferrer" className="bg-[#1a1a1a] text-white pl-6 pr-2 py-2 rounded-full text-sm font-medium hover:bg-black transition-colors flex items-center gap-4 group shadow-xl shadow-black/10">
+            <button onClick={() => setSelectedGalleryIndex(0)} className="bg-[#1a1a1a] text-white pl-6 pr-2 py-2 rounded-full text-sm font-medium hover:bg-black transition-colors flex items-center gap-4 group shadow-xl shadow-black/10">
               Explore our produce
               <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black group-hover:bg-[#f4b840] group-hover:text-white transition-colors">
                 <ArrowUpRight size={16} />
               </div>
-            </a>
+            </button>
           </div>
         </section>
 
@@ -317,6 +317,7 @@ export const MFarms = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="fixed inset-0 z-[110] flex flex-col items-center justify-center bg-black/95 p-4 sm:p-8"
+                onClick={() => setSelectedGalleryIndex(null)}
               >
                 <button
                   onClick={() => setSelectedGalleryIndex(null)}
@@ -325,7 +326,10 @@ export const MFarms = () => {
                   <X size={24} />
                 </button>
 
-                <div className="relative w-full max-w-5xl h-[60vh] sm:h-[70vh] flex items-center justify-center mb-6">
+                <div 
+                  className="relative w-full max-w-5xl h-[60vh] sm:h-[70vh] flex items-center justify-center mb-6"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <motion.img
                     key={selectedGalleryIndex}
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -350,7 +354,10 @@ export const MFarms = () => {
                   </button>
                 </div>
 
-                <div className="w-full max-w-5xl overflow-x-auto flex gap-2 pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                <div 
+                  className="w-full max-w-5xl overflow-x-auto flex gap-2 pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   {galleryImages.map((img, idx) => (
                     <div
                       key={idx}
