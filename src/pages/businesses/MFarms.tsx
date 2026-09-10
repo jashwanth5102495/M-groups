@@ -221,7 +221,7 @@ export const MFarms = () => {
         {/* Scale & Quality Field Overlay Section */}
         <section className="px-4 md:px-12 py-12">
           <div className="relative w-full h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col p-10 md:p-16 justify-between">
-            <img src="/farms/WhatsApp Image 2026-09-09 at 10.16.09 PM.jpeg" alt="Wheat Sunrise" className="absolute inset-0 w-full h-full object-cover" />
+            <img src="/farms/impressive_farm_scale.jpg" alt="Farm Scale" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/20" />
             
             <div className="relative z-10 flex justify-between items-start">
@@ -253,14 +253,6 @@ export const MFarms = () => {
                 <h3 className="text-3xl font-bold mb-1">50+</h3>
                 <p className="text-[10px] text-[#6b6b6b] uppercase tracking-wider">modern agricultural<br/>technologies</p>
               </div>
-            </div>
-
-            <div className="absolute bottom-12 left-12 bg-[#1a1a1a]/80 backdrop-blur-md rounded-3xl p-6 shadow-2xl text-white border border-white/10 hidden md:block w-48">
-              <h3 className="text-2xl font-bold mb-1">Nº2</h3>
-              <p className="text-white/60 text-[10px] leading-relaxed mb-4">in field crop production in India</p>
-              <button className="w-8 h-8 bg-[#f4b840] rounded-full flex items-center justify-center text-white shrink-0 hover:bg-white hover:text-black transition-colors shadow-sm">
-                <ArrowUpRight size={14} strokeWidth={2.5} />
-              </button>
             </div>
           </div>
         </section>
