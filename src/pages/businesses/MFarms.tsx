@@ -135,7 +135,7 @@ export const MFarms = () => {
             
             {/* Decorative images floating around text */}
             <div className="absolute -left-20 -bottom-8 w-16 h-10 rounded-full overflow-hidden hidden lg:block">
-              <img src="/farms/WhatsApp%20Image%202026-09-09%20at%2010.11.10%20PM.jpeg" className="w-full h-full object-cover" alt="Wheat" />
+              <img src="/farms/WhatsApp Image 2026-09-09 at 10.11.10 PM.jpeg" className="w-full h-full object-cover" alt="Wheat" />
             </div>
             <div className="absolute -right-16 -top-4 w-12 h-12 rounded-xl overflow-hidden hidden lg:block">
               <img src="/farms/2.webp" className="w-full h-full object-cover" alt="Farm Detail" />
@@ -186,9 +186,9 @@ export const MFarms = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'Vegetables', desc: 'Seasonal vegetables · Leafy greens · Root vegetables', text: 'Fresh, naturally cultivated vegetables grown with traditional farming practices.', img: '/farms/WhatsApp%20Image%202026-09-09%20at%2010.11.12%20PM.jpeg' },
-              { title: 'Fruits', desc: 'Seasonal fruits · Orchard fruits · Fresh produce', text: 'Naturally grown seasonal fruits, cultivated with care using sustainable farming practices.', img: '/farms/WhatsApp%20Image%202026-09-09%20at%2010.11.15%20PM.jpeg' },
-              { title: 'Flowers', desc: 'Seasonal flowers · Garden flowers · Fresh blooms', text: 'Fresh flowers cultivated naturally for their beauty, fragrance, and quality.', img: '/farms/WhatsApp%20Image%202026-09-09%20at%2010.16.03%20PM.jpeg' }
+              { title: 'Vegetables', desc: 'Seasonal vegetables · Leafy greens · Root vegetables', text: 'Fresh, naturally cultivated vegetables grown with traditional farming practices.', img: '/farms/WhatsApp Image 2026-09-09 at 10.11.12 PM.jpeg' },
+              { title: 'Fruits', desc: 'Seasonal fruits · Orchard fruits · Fresh produce', text: 'Naturally grown seasonal fruits, cultivated with care using sustainable farming practices.', img: '/farms/WhatsApp Image 2026-09-09 at 10.11.15 PM.jpeg' },
+              { title: 'Flowers', desc: 'Seasonal flowers · Garden flowers · Fresh blooms', text: 'Fresh flowers cultivated naturally for their beauty, fragrance, and quality.', img: '/farms/WhatsApp Image 2026-09-09 at 10.16.03 PM.jpeg' }
             ].map((prod, idx) => (
               <div key={idx} className="bg-white rounded-[2rem] p-6 flex flex-col justify-between shadow-[0_8px_30px_rgb(0,0,0,0.04)] group hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all h-[360px]">
                 <div className="w-full h-1/2 rounded-xl overflow-hidden mb-6 bg-[#faf9f6] flex items-center justify-center">
@@ -221,7 +221,7 @@ export const MFarms = () => {
         {/* Scale & Quality Field Overlay Section */}
         <section className="px-4 md:px-12 py-12">
           <div className="relative w-full h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col p-10 md:p-16 justify-between">
-            <img src="/farms/WhatsApp%20Image%202026-09-09%20at%2010.16.09%20PM.jpeg" alt="Wheat Sunrise" className="absolute inset-0 w-full h-full object-cover" />
+            <img src="/farms/WhatsApp Image 2026-09-09 at 10.16.09 PM.jpeg" alt="Wheat Sunrise" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/20" />
             
             <div className="relative z-10 flex justify-between items-start">
@@ -293,7 +293,7 @@ export const MFarms = () => {
                 >
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10 pointer-events-none" />
                   <img 
-                    src={`/farms/${encodeURIComponent(img)}`}
+                    src={`/farms/${img}`}
                     alt={`Farm image ${idx + 1}`}
                     loading={idx < 4 ? "eager" : "lazy"}
                     className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-700 ease-out origin-center" 
@@ -331,7 +331,7 @@ export const MFarms = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3 }}
-                    src={`/farms/${encodeURIComponent(galleryImages[selectedGalleryIndex])}`}
+                    src={`/farms/${galleryImages[selectedGalleryIndex]}`}
                     alt="Gallery Selected"
                     className="max-w-full max-h-full object-contain rounded-md"
                   />
@@ -358,7 +358,7 @@ export const MFarms = () => {
                       className={`flex-none w-20 h-20 sm:w-24 sm:h-24 cursor-pointer rounded-md overflow-hidden transition-all duration-300 ${selectedGalleryIndex === idx ? 'ring-2 ring-[#f4b840] opacity-100 scale-105' : 'opacity-40 hover:opacity-100'}`}
                     >
                       <img
-                        src={`/farms/${encodeURIComponent(img)}`}
+                        src={`/farms/${img}`}
                         alt={`Thumbnail ${idx + 1}`}
                         className="w-full h-full object-cover"
                       />
@@ -411,7 +411,7 @@ export const MFarms = () => {
               </div>
 
               <div className="rounded-[2rem] overflow-hidden shadow-md h-48">
-                <img src="/farms/WhatsApp%20Image%202026-09-09%20at%2010.16.12%20PM.jpeg" alt="Indian Farm Landscape" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                <img src="/farms/WhatsApp Image 2026-09-09 at 10.16.12 PM.jpeg" alt="Indian Farm Landscape" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
               </div>
             </div>
 
