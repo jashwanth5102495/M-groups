@@ -213,7 +213,7 @@ export const MGBlock = () => {
           </div>
         </section>
 
-        <MapSection />
+        <MapSection customAddress="Coming soon" hideMapLocation={true} />
 
       </div>
     </PageTransition>

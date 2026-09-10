@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ExternalLink, MapPin, Phone, Mail, Send } from 'lucide-react';
 
-export const MapSection = () => {
+export const MapSection = ({ customAddress, hideMapLocation }: { customAddress?: string, hideMapLocation?: boolean } = {}) => {
   const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
 
   const handleWhatsAppSubmit = (e: React.FormEvent) => {
@@ -21,7 +21,7 @@ export const MapSection = () => {
           {/* Badge */}
           <div className="flex items-center px-3 py-1 rounded-full border border-[#1e3a8a] bg-[#1e3a8a]/20 mb-4">
             <span className="text-[9px] font-bold tracking-[0.15em] uppercase text-[#3b82f6]">
-              ✦ OUR HEADQUARTERS ✦
+              {customAddress === 'Coming soon' ? 'LOCATION' : 'OUR HEADQUARTERS'}
             </span>
           </div>
 
@@ -36,17 +36,23 @@ export const MapSection = () => {
                 <MapPin size={14} className="text-[#3b82f6]" /> Address
               </div>
               <p className="text-[#a3a3a3] text-[13px] leading-relaxed">
-                Devanahalli, Southegowdanahalli,<br />
-                Devanahalli, Karnataka - 562110
+                {customAddress ? customAddress : (
+                  <>
+                    Devanahalli, Southegowdanahalli,<br />
+                    Devanahalli, Karnataka - 562110
+                  </>
+                )}
               </p>
-              <a 
-                href="https://www.google.com/maps?q=Devanahalli,+Southegowdanahalli,+Devanahalli,+Karnataka+562110" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 text-[#3b82f6] hover:text-[#60a5fa] transition-colors text-[9px] font-bold tracking-[0.1em] uppercase mt-1"
-              >
-                OPEN IN MAPS <ExternalLink size={10} />
-              </a>
+              {!hideMapLocation && (
+                <a 
+                  href="https://www.google.com/maps?q=Devanahalli,+Southegowdanahalli,+Devanahalli,+Karnataka+562110" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-[#3b82f6] hover:text-[#60a5fa] transition-colors text-[9px] font-bold tracking-[0.1em] uppercase mt-1"
+                >
+                  OPEN IN MAPS <ExternalLink size={10} />
+                </a>
+              )}
             </div>
 
             <div className="flex flex-col gap-3">
@@ -113,17 +119,24 @@ export const MapSection = () => {
         </div>
 
         {/* Right Map */}
-        <div className="w-full lg:w-[50%] min-h-[300px] lg:min-h-full rounded-[16px] overflow-hidden relative border border-white/10 flex-grow">
-          <iframe
-            src="https://www.google.com/maps?q=Devanahalli,+Southegowdanahalli,+Devanahalli,+Karnataka+562110&output=embed"
-            width="100%"
-            height="100%"
-            style={{ border: 0, minHeight: '100%', position: 'absolute', inset: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="w-full h-full object-cover"
-          ></iframe>
+        <div className="w-full lg:w-[50%] min-h-[300px] lg:min-h-full rounded-[16px] overflow-hidden relative border border-white/10 flex-grow bg-[#111] flex items-center justify-center">
+          {!hideMapLocation ? (
+            <iframe
+              src="https://www.google.com/maps?q=Devanahalli,+Southegowdanahalli,+Devanahalli,+Karnataka+562110&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0, minHeight: '100%', position: 'absolute', inset: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-full object-cover"
+            ></iframe>
+          ) : (
+            <div className="text-white/40 flex flex-col items-center justify-center p-8 text-center">
+              <MapPin size={48} className="mb-4 opacity-50" />
+              <p className="text-lg font-medium tracking-wide">Location Details Coming Soon</p>
+            </div>
+          )}
         </div>
         
       </div>
