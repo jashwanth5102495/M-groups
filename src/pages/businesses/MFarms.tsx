@@ -35,6 +35,7 @@ const fadeUp = {
 
 export const MFarms = () => {
   const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null);
+  const [showCatalogModal, setShowCatalogModal] = useState(false);
   const galleryScrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -81,7 +82,7 @@ export const MFarms = () => {
                   <p className="text-[#6b6b6b] text-sm max-w-[280px] leading-relaxed border-l-2 border-[#f4b840]/30 pl-4">
                     M Farms is a leader in the Indian market and one of the leading wheat producers in the region. Modern technologies and quality control guarantee the reliability of our products.
                   </p>
-                  <button className="bg-[#111] text-white pl-6 pr-2 py-2 rounded-full text-sm font-medium hover:bg-black transition-colors flex items-center gap-6 group shadow-2xl">
+                  <button onClick={() => setShowCatalogModal(true)} className="bg-[#111] text-white pl-6 pr-2 py-2 rounded-full text-sm font-medium hover:bg-black transition-colors flex items-center gap-6 group shadow-2xl">
                     See catalog
                     <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-black group-hover:bg-[#f4b840] group-hover:text-white transition-colors">
                       <ArrowUpRight size={18} />
@@ -356,6 +357,87 @@ export const MFarms = () => {
                     </div>
                   ))}
                 </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Catalog Modal */}
+          <AnimatePresence>
+            {showCatalogModal && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[110] flex flex-col items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-8"
+                onClick={() => setShowCatalogModal(false)}
+              >
+                <motion.div 
+                  initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-[#faf9f6] text-[#1a1a1a] rounded-[2rem] w-full max-w-5xl max-h-[85vh] flex flex-col shadow-2xl relative overflow-hidden"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="flex items-center justify-between p-6 md:p-8 border-b border-[#e0e0e0]">
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-medium">Product Availability</h3>
+                      <p className="text-[#6b6b6b] text-sm mt-1">Explore our wide range of fresh produce</p>
+                    </div>
+                    <button
+                      onClick={() => setShowCatalogModal(false)}
+                      className="text-[#6b6b6b] hover:text-black transition-colors p-2 bg-[#f0f0f0] rounded-full"
+                    >
+                      <X size={24} />
+                    </button>
+                  </div>
+                  
+                  <div className="flex-1 overflow-y-auto p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-12">
+                    {/* Vegetables Column */}
+                    <div>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-8 h-8 rounded-full bg-[#4CAF50] flex items-center justify-center text-white shadow-sm">
+                          <span className="text-xs font-bold">V</span>
+                        </div>
+                        <h4 className="text-xl font-medium tracking-tight">Vegetables</h4>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                        {[
+                          'Potato', 'Tomato', 'Carrot', 'Brinjal', 'Green chilly', 'Cucumber', 'Cabbage', 'Pumpkin', 'Radish', 'Cauliflower', 
+                          'Beetroot', 'Mushroom', 'Green beans', 'Spinach', 'Bitter gourd', "Lady's finger", 'Eggplant', 'Broccoli', 'Onion', 
+                          'Garlic', 'Ginger', 'Capsicum', 'Bottle gourd', 'Mint leaf', 'Coriander leaf', 'Lemon', 'Ridge gourd', 'Chayote', 
+                          'Drumstick', 'Curry leaf', 'Fenugreek leaf'
+                        ].map((item, idx) => (
+                          <div key={idx} className="flex items-center gap-2 text-[#4a4a4a] text-sm">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#4CAF50]/60 shrink-0" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Fruits Column */}
+                    <div>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-8 h-8 rounded-full bg-[#f4b840] flex items-center justify-center text-white shadow-sm">
+                          <span className="text-xs font-bold">F</span>
+                        </div>
+                        <h4 className="text-xl font-medium tracking-tight">Fruits</h4>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                        {[
+                          'Grapes (4 types) seasonal', 'Guava', 'Chikoo', 'Dragon fruit', 'Pomegranate', 
+                          'Mango', 'Papaya', 'Coconut', 'Banana', 'Jack Fruit'
+                        ].map((item, idx) => (
+                          <div key={idx} className="flex items-center gap-2 text-[#4a4a4a] text-sm">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#f4b840]/60 shrink-0" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
