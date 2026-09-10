@@ -1,13 +1,63 @@
-import { motion } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransition } from '../../components/ui/PageTransition';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, X, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+
+const galleryImages = [
+  "1.jpeg",
+  "1.webp",
+  "2.webp",
+  "WhatsApp Image 2026-09-09 at 10.11.10 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.11.12 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.11.15 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.16.03 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.16.09 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.16.12 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.16.19 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.22.35 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.23.06 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.23.12 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.23.14 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.33.05 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.33.08 PM (1).jpeg",
+  "WhatsApp Image 2026-09-09 at 10.33.08 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.33.09 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.33.11 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.33.12 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.33.14 PM.jpeg",
+  "WhatsApp Image 2026-09-09 at 10.33.15 PM.jpeg"
+];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } as any }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.1 } as any
+  }
 };
 
 export const MFarms = () => {
+  const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null);
+  const galleryScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollInterval = setInterval(() => {
+      if (galleryScrollRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = galleryScrollRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          galleryScrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          galleryScrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+        }
+      }
+    }, 3000);
+    return () => clearInterval(scrollInterval);
+  }, []);
   return (
     <PageTransition>
       <div className="w-full min-h-screen bg-[#faf9f6] text-[#1a1a1a] font-sans selection:bg-[#fae8b1] selection:text-black">
@@ -85,7 +135,7 @@ export const MFarms = () => {
             
             {/* Decorative images floating around text */}
             <div className="absolute -left-20 -bottom-8 w-16 h-10 rounded-full overflow-hidden hidden lg:block">
-              <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?q=80&w=200&auto=format&fit=crop" className="w-full h-full object-cover" alt="Wheat" />
+              <img src="/farms/WhatsApp%20Image%202026-09-09%20at%2010.11.10%20PM.jpeg" className="w-full h-full object-cover" alt="Wheat" />
             </div>
             <div className="absolute -right-16 -top-4 w-12 h-12 rounded-xl overflow-hidden hidden lg:block">
               <img src="/farms/2.webp" className="w-full h-full object-cover" alt="Farm Detail" />
@@ -136,9 +186,9 @@ export const MFarms = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'Vegetables', desc: 'Seasonal vegetables · Leafy greens · Root vegetables', text: 'Fresh, naturally cultivated vegetables grown with traditional farming practices.', img: 'https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=600&auto=format&fit=crop' },
-              { title: 'Fruits', desc: 'Seasonal fruits · Orchard fruits · Fresh produce', text: 'Naturally grown seasonal fruits, cultivated with care using sustainable farming practices.', img: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=600&auto=format&fit=crop' },
-              { title: 'Flowers', desc: 'Seasonal flowers · Garden flowers · Fresh blooms', text: 'Fresh flowers cultivated naturally for their beauty, fragrance, and quality.', img: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=600&auto=format&fit=crop' }
+              { title: 'Vegetables', desc: 'Seasonal vegetables · Leafy greens · Root vegetables', text: 'Fresh, naturally cultivated vegetables grown with traditional farming practices.', img: '/farms/WhatsApp%20Image%202026-09-09%20at%2010.11.12%20PM.jpeg' },
+              { title: 'Fruits', desc: 'Seasonal fruits · Orchard fruits · Fresh produce', text: 'Naturally grown seasonal fruits, cultivated with care using sustainable farming practices.', img: '/farms/WhatsApp%20Image%202026-09-09%20at%2010.11.15%20PM.jpeg' },
+              { title: 'Flowers', desc: 'Seasonal flowers · Garden flowers · Fresh blooms', text: 'Fresh flowers cultivated naturally for their beauty, fragrance, and quality.', img: '/farms/WhatsApp%20Image%202026-09-09%20at%2010.16.03%20PM.jpeg' }
             ].map((prod, idx) => (
               <div key={idx} className="bg-white rounded-[2rem] p-6 flex flex-col justify-between shadow-[0_8px_30px_rgb(0,0,0,0.04)] group hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all h-[360px]">
                 <div className="w-full h-1/2 rounded-xl overflow-hidden mb-6 bg-[#faf9f6] flex items-center justify-center">
@@ -171,7 +221,7 @@ export const MFarms = () => {
         {/* Scale & Quality Field Overlay Section */}
         <section className="px-4 md:px-12 py-12">
           <div className="relative w-full h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col p-10 md:p-16 justify-between">
-            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000&auto=format&fit=crop" alt="Wheat Sunrise" className="absolute inset-0 w-full h-full object-cover" />
+            <img src="/farms/WhatsApp%20Image%202026-09-09%20at%2010.16.09%20PM.jpeg" alt="Wheat Sunrise" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/20" />
             
             <div className="relative z-10 flex justify-between items-start">
@@ -215,6 +265,111 @@ export const MFarms = () => {
           </div>
         </section>
 
+        {/* Farm Gallery Section */}
+        <section className="px-6 md:px-12 py-24 bg-[#faf9f3]">
+          <div className="flex flex-col mb-16">
+            <motion.span variants={fadeUp} className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-[#8c7a4d] mb-4">
+              FARM GALLERY
+            </motion.span>
+            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-medium tracking-tight text-[#1a1a1a]">
+              A Glimpse into Our Farms
+            </motion.h2>
+          </div>
+
+          <div className="relative">
+            <div 
+              ref={galleryScrollRef}
+              className="flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            >
+              {galleryImages.map((img, idx) => (
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: Math.min(idx, 10) * 0.05 }}
+                  className="flex-none w-[280px] sm:w-[320px] h-[400px] group relative overflow-hidden rounded-[2rem] snap-center cursor-pointer shadow-lg"
+                  onClick={() => setSelectedGalleryIndex(idx)}
+                >
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10 pointer-events-none" />
+                  <img 
+                    src={`/farms/${encodeURIComponent(img)}`}
+                    alt={`Farm image ${idx + 1}`}
+                    loading={idx < 4 ? "eager" : "lazy"}
+                    className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-700 ease-out origin-center" 
+                  />
+                  
+                  <div className="absolute bottom-4 right-4 z-20 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg text-black">
+                      <ArrowUpRight size={18} />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Gallery Modal */}
+          <AnimatePresence>
+            {selectedGalleryIndex !== null && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[110] flex flex-col items-center justify-center bg-black/95 p-4 sm:p-8"
+              >
+                <button
+                  onClick={() => setSelectedGalleryIndex(null)}
+                  className="absolute top-6 right-6 text-white/70 hover:text-white z-[120] p-2 bg-black/50 rounded-full"
+                >
+                  <X size={24} />
+                </button>
+
+                <div className="relative w-full max-w-5xl h-[60vh] sm:h-[70vh] flex items-center justify-center mb-6">
+                  <motion.img
+                    key={selectedGalleryIndex}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                    src={`/farms/${encodeURIComponent(galleryImages[selectedGalleryIndex])}`}
+                    alt="Gallery Selected"
+                    className="max-w-full max-h-full object-contain rounded-md"
+                  />
+                  
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); setSelectedGalleryIndex(prev => prev === 0 ? galleryImages.length - 1 : prev! - 1); }}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors z-[120]"
+                  >
+                    <ChevronLeft size={24} />
+                  </button>
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); setSelectedGalleryIndex(prev => prev === galleryImages.length - 1 ? 0 : prev! + 1); }}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors z-[120]"
+                  >
+                    <ChevronRight size={24} />
+                  </button>
+                </div>
+
+                <div className="w-full max-w-5xl overflow-x-auto flex gap-2 pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  {galleryImages.map((img, idx) => (
+                    <div
+                      key={idx}
+                      onClick={() => setSelectedGalleryIndex(idx)}
+                      className={`flex-none w-20 h-20 sm:w-24 sm:h-24 cursor-pointer rounded-md overflow-hidden transition-all duration-300 ${selectedGalleryIndex === idx ? 'ring-2 ring-[#f4b840] opacity-100 scale-105' : 'opacity-40 hover:opacity-100'}`}
+                    >
+                      <img
+                        src={`/farms/${encodeURIComponent(img)}`}
+                        alt={`Thumbnail ${idx + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </section>
+
         {/* Bottom Info Section */}
         <section className="px-6 md:px-12 py-24 pb-32">
           <div className="flex flex-col xl:flex-row gap-16 justify-between items-start">
@@ -256,7 +411,7 @@ export const MFarms = () => {
               </div>
 
               <div className="rounded-[2rem] overflow-hidden shadow-md h-48">
-                <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=800&auto=format&fit=crop" alt="Indian Farm Landscape" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                <img src="/farms/WhatsApp%20Image%202026-09-09%20at%2010.16.12%20PM.jpeg" alt="Indian Farm Landscape" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
               </div>
             </div>
 
