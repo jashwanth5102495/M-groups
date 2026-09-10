@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransition } from '../../components/ui/PageTransition';
-import { ArrowUpRight, X, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const galleryImages = [
   "1.jpeg",
@@ -31,14 +31,6 @@ const galleryImages = [
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } as any }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.1 } as any
-  }
 };
 
 export const MFarms = () => {
