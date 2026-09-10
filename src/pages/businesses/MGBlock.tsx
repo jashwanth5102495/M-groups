@@ -26,7 +26,7 @@ export const MGBlock = () => {
           <div className="absolute inset-0 z-0">
             <img 
               src="/m-block/hero.jpg" 
-              alt="M Block Manufacturing" 
+              alt="MG Blocks and Interiors Manufacturing" 
               className="w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#111] via-[#111]/80 to-transparent w-full md:w-[70%] lg:w-[60%]" />
@@ -50,7 +50,7 @@ export const MGBlock = () => {
                 variants={fadeUp}
                 className="text-5xl md:text-6xl lg:text-[76px] leading-[1.05] font-serif tracking-tight text-white mb-6"
               >
-                M Block
+                MG Blocks and Interiors
               </motion.h1>
               
               <motion.p 
@@ -86,10 +86,10 @@ export const MGBlock = () => {
                   Built for construction.<br/>Backed by M Groups.
                 </motion.h2>
                 <motion.p variants={fadeUp} className="text-[#555] text-base leading-relaxed mb-6">
-                  M Block is the manufacturing arm of <strong className="text-[#111]">M Groups</strong>, specializing in the production of high-quality concrete blocks for residential, commercial, industrial, and infrastructure requirements.
+                  MG Blocks and Interiors is the manufacturing arm of <strong className="text-[#111]">M Groups</strong>, specializing in the production of high-quality concrete blocks for residential, commercial, industrial, and infrastructure requirements.
                 </motion.p>
                 <motion.p variants={fadeUp} className="text-[#555] text-base leading-relaxed mb-8">
-                  From standard hollow and solid blocks to customized solutions, M Block focuses on delivering products that meet project-specific requirements with <strong className="text-[#111]">consistent quality, dependable production, and timely delivery</strong>.
+                  From standard hollow and solid blocks to customized solutions, MG Blocks and Interiors focuses on delivering products that meet project-specific requirements with <strong className="text-[#111]">consistent quality, dependable production, and timely delivery</strong>.
                 </motion.p>
               </motion.div>
               <motion.div 
@@ -159,7 +159,7 @@ export const MGBlock = () => {
               >
                 <motion.h3 variants={fadeUp} className="text-3xl font-serif text-[#111] mb-6">Our Approach</motion.h3>
                 <motion.p variants={fadeUp} className="text-[#555] leading-relaxed mb-6">
-                  At M Block, we understand that every construction project has different requirements. Our approach is built around three essentials:
+                  At MG Blocks and Interiors, we understand that every construction project has different requirements. Our approach is built around three essentials:
                 </motion.p>
                 <motion.div variants={fadeUp} className="bg-[#faf9f6] p-8 border-l-4 border-[#4a5d23] mb-8">
                   <p className="text-xl font-serif text-[#111] italic">Quality. Precision. Reliability.</p>
@@ -201,7 +201,7 @@ export const MGBlock = () => {
                 <motion.div variants={fadeUp} className="bg-[#111] text-white p-10 mt-auto">
                   <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a9b09f] mb-4 block">Part of M Groups</span>
                   <p className="text-[#ccc] text-sm leading-relaxed mb-6">
-                    M Block is a proud business of M Groups, contributing to the group's growing presence in the manufacturing and construction sector. With the strength of M Groups behind it, M Block is focused on building long-term relationships with builders, contractors, developers, and construction partners.
+                    MG Blocks and Interiors is a proud business of M Groups, contributing to the group's growing presence in the manufacturing and construction sector. With the strength of M Groups behind it, MG Blocks and Interiors is focused on building long-term relationships with builders, contractors, developers, and construction partners.
                   </p>
                   <p className="text-lg font-serif italic text-[#a9b09f]">
                     Building the foundation for better construction.

@@ -52,7 +52,7 @@ const dishes = [
   }
 ];
 
-export const MistoryFamilyRestaurant = () => {
+export const MysteryFamilyRestaurant = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null);
   const galleryScrollRef = useRef<HTMLDivElement>(null);
@@ -114,7 +114,7 @@ export const MistoryFamilyRestaurant = () => {
           <div className="absolute inset-0 z-0">
             <img 
               src="/fam.webp" 
-              alt="Mistory Family Restaurant" 
+              alt="Mystery Family Restaurant" 
               className="w-full h-full object-cover" 
             />
             {/* Removed the blue tint overlay, keeping it dark neutral at the bottom for smooth transition */}

@@ -21,13 +21,13 @@ export const businesses: Business[] = [
     featured: true
   },
   {
-    id: 'mistory-roster-cafe',
-    name: 'Mistory Roster Café',
+    id: 'mystery-roster-cafe',
+    name: 'Mystery Roster Café',
     category: 'Hospitality',
     description: 'Creating spaces where food, design and experience come together.',
     status: 'Existing',
-    route: '/businesses/mistory-roster-cafe',
-    image: '/landing/Mistory Roster Café.webp',
+    route: '/businesses/mystery-roster-cafe',
+    image: '/landing/Mystery Roster Café.webp',
     featured: true
   },
   {
@@ -51,18 +51,18 @@ export const businesses: Business[] = [
     featured: true
   },
   {
-    id: 'mistory-family-restaurant',
-    name: 'Mistory Family Restaurant',
+    id: 'mystery-family-restaurant',
+    name: 'Mystery Family Restaurant',
     category: 'Hospitality',
     description: 'A new dining experience is taking shape.',
     status: 'Existing',
-    route: '/businesses/mistory-family-restaurant',
-    image: '/landing/Mistory Family Restaurant.webp',
+    route: '/businesses/mystery-family-restaurant',
+    image: '/landing/Mystery Family Restaurant.webp',
     featured: false
   },
   {
     id: 'mg-block',
-    name: 'M Block & Interiors',
+    name: 'MG Blocks and Interiors',
     category: 'Manufacturing & Design',
     description: 'Hollow block manufacturing and sophisticated interior spaces.',
     status: 'Existing',

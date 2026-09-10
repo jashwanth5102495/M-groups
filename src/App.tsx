@@ -7,8 +7,8 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { BusinessesList } from './pages/BusinessesList';
 import { BusinessDetail } from './pages/BusinessDetail';
-import { MistoryCafe } from './pages/businesses/MistoryCafe';
-import { MistoryFamilyRestaurant } from './pages/businesses/MistoryFamilyRestaurant';
+import { MysteryCafe } from './pages/businesses/MysteryCafe';
+import { MysteryFamilyRestaurant } from './pages/businesses/MysteryFamilyRestaurant';
 import { MFarms } from './pages/businesses/MFarms';
 import { MInteriors } from './pages/businesses/MInteriors';
 import { MRealEstate } from './pages/businesses/MRealEstate';
@@ -27,8 +27,8 @@ function AnimatedRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/businesses" element={<BusinessesList />} />
-        <Route path="/businesses/mistory-roster-cafe" element={<MistoryCafe />} />
-        <Route path="/businesses/mistory-family-restaurant" element={<MistoryFamilyRestaurant />} />
+        <Route path="/businesses/Mystery-roster-cafe" element={<MysteryCafe />} />
+        <Route path="/businesses/Mystery-family-restaurant" element={<MysteryFamilyRestaurant />} />
         <Route path="/businesses/m-farms" element={<MFarms />} />
         <Route path="/businesses/m-interiors" element={<MInteriors />} />
         <Route path="/m-real-estate" element={<MRealEstate />} />

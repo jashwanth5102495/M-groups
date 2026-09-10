@@ -255,7 +255,7 @@ const heroImages = [
   '/MRC/4.webp'
 ];
 
-export const MistoryCafe = () => {
+export const MysteryCafe = () => {
   const menuCategories = Object.keys(fullMenuData);
   const [activeFilter, setActiveFilter] = useState(menuCategories[0]);
   const [currentDishIndex, setCurrentDishIndex] = useState(0);
@@ -347,7 +347,7 @@ export const MistoryCafe = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
               >
-                <h3 className="font-serif italic text-2xl md:text-3xl text-[#d4a373] mb-4">Mistory Roster Cafe</h3>
+                <h3 className="font-serif italic text-2xl md:text-3xl text-[#d4a373] mb-4">Mystery Roster Cafe</h3>
                 <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-6">
                   <span className="text-white block">GOOD FOOD</span>
                   <span className="text-[#d4a373] block">GOOD MOOD</span>
