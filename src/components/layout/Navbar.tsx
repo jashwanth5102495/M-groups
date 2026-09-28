@@ -23,7 +23,7 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isLight = (location.pathname === '/businesses/m-farms' || location.pathname === '/businesses/m-interiors' || location.pathname === '/businesses/m-real-estate' || location.pathname === '/m-real-estate') && !isScrolled;
+  const isLight = (location.pathname === '/about' || location.pathname === '/businesses/m-farms' || location.pathname === '/businesses/m-interiors' || location.pathname === '/businesses/m-real-estate' || location.pathname === '/m-real-estate') && !isScrolled;
   const textColor = isLight ? 'text-black' : 'text-white/90';
   const textHover = isLight ? 'hover:text-[#c69a53]' : 'hover:text-white';
   const logoText = isLight ? 'text-black' : 'text-white';

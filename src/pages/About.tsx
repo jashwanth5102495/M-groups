@@ -1,7 +1,7 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { PageTransition } from '../components/ui/PageTransition';
-import { useRef } from 'react';
-import { Target, TrendingUp, ShieldCheck, Users } from 'lucide-react';
+import { useRef, useState, useEffect } from 'react';
+import { Target, TrendingUp, ShieldCheck, Users, ArrowDown, ChevronRight, ChevronLeft } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -16,72 +16,224 @@ const staggerContainer = {
   }
 };
 
+const heroCards = [
+  {
+    id: 'real-estate',
+    title: 'Smart Homes, Smarter Future: Integrating Technology in Eco-Friendly Designs',
+    date: '12 FEB 2026',
+    img: '/landing/M Real Estate.webp'
+  },
+  {
+    id: 'interiors',
+    title: 'Minimalism in Interior Design: Increasing Tranquility for Modern Living',
+    date: '15 JAN 2026',
+    img: '/landing/M Interiors.webp'
+  },
+  {
+    id: 'farms',
+    title: 'Sustainable Agriculture: Harmonizing Nature & Future Yields',
+    date: '08 DEC 2025',
+    img: '/landing/M Farms.webp'
+  },
+  {
+    id: 'builders',
+    title: 'Architectural Excellence: Crafting Sustainable Landmarks of Tomorrow',
+    date: '20 NOV 2025',
+    img: '/landing/MS Builders & Developers.webp'
+  }
+];
+
 export const About = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-  
-  const yHero = useTransform(scrollYProgress, [0, 1], [0, 300]);
-  const opacityHero = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const scrollToCardIndex = (index: number) => {
+    const nextIndex = (index + heroCards.length) % heroCards.length;
+    setActiveIndex(nextIndex);
+    if (sliderRef.current && sliderRef.current.children[nextIndex]) {
+      const targetCard = sliderRef.current.children[nextIndex] as HTMLElement;
+      sliderRef.current.scrollTo({
+        left: targetCard.offsetLeft,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // Auto-play slide transition every 4 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      scrollToCardIndex(activeIndex + 1);
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, [activeIndex]);
 
   return (
     <PageTransition>
-      <div ref={containerRef} className="bg-[#050505] min-h-screen text-[#f5f5f5] selection:bg-[#d49942] selection:text-black font-sans">
+      <div className="bg-[#050505] min-h-screen text-[#f5f5f5] selection:bg-[#d49942] selection:text-black font-sans">
         
-        {/* Dynamic Hero Section */}
-        <section className="relative h-screen flex items-center justify-center overflow-hidden">
-          {/* Abstract Background Elements */}
-          <div className="absolute inset-0 z-0">
-            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#d49942]/10 rounded-full blur-[120px] mix-blend-screen" />
-            <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#1e3a8a]/20 rounded-full blur-[100px] mix-blend-screen" />
-            <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
-          </div>
+        {/* SVG Clip-Path Definition for Responsive Notched Card Shape */}
+        <svg width="0" height="0" className="absolute pointer-events-none w-0 h-0 overflow-hidden" aria-hidden="true">
+          <defs>
+            <clipPath id="cardNotchClip" clipPathUnits="objectBoundingBox">
+              <path d="
+                M 0.05 0 
+                L 0.95 0 
+                A 0.05 0.035 0 0 1 1 0.035 
+                L 1 0.965 
+                A 0.05 0.035 0 0 1 0.95 1 
+                L 0.64 1 
+                A 0.05 0.035 0 0 1 0.58 0.965 
+                L 0.58 0.74 
+                A 0.04 0.03 0 0 0 0.53 0.705 
+                L 0.05 0.705 
+                A 0.05 0.035 0 0 1 0 0.67 
+                L 0 0.035 
+                A 0.05 0.035 0 0 1 0.05 0 
+                Z
+              " />
+            </clipPath>
+          </defs>
+        </svg>
 
-          <motion.div 
-            style={{ y: yHero, opacity: opacityHero }}
-            className="container mx-auto px-6 md:px-12 relative z-10 text-center flex flex-col items-center pt-24"
-          >
-            <motion.span 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="text-[10px] tracking-[0.3em] text-[#d49942] uppercase font-bold mb-6 block border border-[#d49942]/30 px-4 py-1.5 rounded-full"
-            >
-              Discover Our Legacy
-            </motion.span>
+        {/* ========================================================================= */}
+        {/* HERO SECTION - RESPONSIVE & PIXEL-PERFECT ACROSS ALL SCREEN SIZES        */}
+        {/* ========================================================================= */}
+        <section className="bg-[#FFFFFF] text-neutral-900 min-h-[92vh] pt-24 md:pt-28 lg:pt-32 pb-10 px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-between relative border-b border-neutral-200 overflow-hidden">
+          <div className="container mx-auto max-w-[1440px] flex-grow flex flex-col justify-between">
             
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
+            {/* Top Bar Navigation / Header Indicator */}
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-              className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[1.1] text-white mb-8 tracking-tight"
+              transition={{ duration: 0.6 }}
+              className="flex items-center justify-between mb-6 md:mb-8 lg:mb-10"
             >
-              Building The Future, <br />
-              <span className="italic text-white/50">Honoring The Past.</span>
-            </motion.h1>
-            
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="max-w-2xl text-lg md:text-xl text-white/60 font-light leading-relaxed"
-            >
-              M Groups is a dynamic conglomerate that redefines excellence across multiple industries, from sustainable agriculture to premium real estate and unmatched hospitality.
-            </motion.p>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "100px" }}
-            transition={{ duration: 1, delay: 1 }}
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-gradient-to-b from-[#d49942]/0 via-[#d49942] to-[#d49942]/0"
-          />
+              {/* Left Brand Badge */}
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white font-mono font-bold text-xs shadow-sm">
+                  M
+                </div>
+                <span className="text-xs font-bold tracking-[0.2em] text-neutral-900 uppercase">
+                  M GROUPS
+                </span>
+              </div>
+
+              {/* Slider Controls & Active Page Indicator */}
+              <div className="flex items-center gap-4">
+                <span className="text-xs font-bold font-mono tracking-widest text-neutral-400">
+                  0{activeIndex + 1} / 0{heroCards.length}
+                </span>
+
+                <div className="flex items-center gap-2">
+                  <button 
+                    onClick={() => scrollToCardIndex(activeIndex - 1)}
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-700 hover:bg-black hover:text-white hover:border-black transition-all cursor-pointer"
+                    aria-label="Previous card"
+                  >
+                    <ChevronLeft size={18} />
+                  </button>
+                  <button 
+                    onClick={() => scrollToCardIndex(activeIndex + 1)}
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-700 hover:bg-black hover:text-white hover:border-black transition-all cursor-pointer"
+                    aria-label="Next card"
+                  >
+                    <ChevronRight size={18} />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Main Section Content Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-stretch flex-grow my-auto py-2">
+              
+              {/* Left Column */}
+              <div className="lg:col-span-4 flex flex-col justify-between pr-0 lg:pr-4">
+                <div>
+                  <motion.h1 
+                    initial={{ opacity: 0, y: 25 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.1 }}
+                    className="text-5xl sm:text-7xl lg:text-7xl xl:text-8xl font-sans font-bold tracking-tighter text-neutral-950 uppercase leading-none mb-6"
+                  >
+                    ABOUT
+                  </motion.h1>
+                </div>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="mt-8 lg:mt-auto pt-4"
+                >
+                  <p className="text-neutral-600 text-xs sm:text-sm md:text-base font-normal leading-relaxed max-w-xs mb-6 sm:mb-8">
+                    Explore the secrets of design innovation, modern living, and architectural insights through our engaging portfolio.
+                  </p>
+
+                  <a 
+                    href="#ethos"
+                    className="inline-flex items-center gap-3 group cursor-pointer"
+                  >
+                    <span className="text-xs font-bold tracking-[0.2em] uppercase text-neutral-900 group-hover:text-black transition-colors">
+                      EXPLORE
+                    </span>
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-neutral-800 transition-all shadow-md">
+                      <ArrowDown size={18} className="group-hover:translate-y-0.5 transition-transform" />
+                    </div>
+                  </a>
+                </motion.div>
+              </div>
+
+              {/* Right Column: Hero Showcase Cards Carousel */}
+              <div className="lg:col-span-8 relative flex items-center overflow-hidden">
+                <div 
+                  ref={sliderRef}
+                  className="w-full flex gap-6 md:gap-8 overflow-x-auto no-scrollbar py-2 px-1 scroll-smooth snap-x snap-mandatory items-center"
+                >
+                  {heroCards.map((card, idx) => (
+                    <motion.div 
+                      key={card.id}
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: 0.2 + idx * 0.1 }}
+                      className="snap-start min-w-[290px] sm:min-w-[420px] md:min-w-[500px] lg:min-w-[580px] xl:min-w-[640px] h-[440px] sm:h-[500px] md:h-[540px] lg:h-[560px] xl:h-[600px] max-h-[75vh] relative flex-shrink-0 group cursor-pointer"
+                      onClick={() => scrollToCardIndex(idx)}
+                    >
+                      {/* Clipped Image Container */}
+                      <div 
+                        className="w-full h-full overflow-hidden transition-transform duration-1000 ease-out group-hover:scale-[1.01]"
+                        style={{ clipPath: 'url(#cardNotchClip)', WebkitClipPath: 'url(#cardNotchClip)' }}
+                      >
+                        <img 
+                          src={card.img} 
+                          alt={card.title} 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+
+                      {/* Text positioned directly inside the white notch cutout area */}
+                      <div className="absolute bottom-0 left-0 w-[54%] sm:w-[52%] h-[29.5%] p-3 sm:p-5 flex flex-col justify-end text-neutral-900 z-10 pointer-events-none">
+                        <h3 className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-neutral-900 leading-tight tracking-tight mb-2 font-sans line-clamp-3">
+                          {card.title}
+                        </h3>
+                        
+                        <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.15em] text-neutral-500 uppercase block">
+                          {card.date}
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))}
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
         </section>
 
         {/* Philosophy / Ethos Section */}
-        <section className="py-24 md:py-32 relative z-10 bg-[#0a0a0a]">
+        <section id="ethos" className="py-24 md:py-32 relative z-10 bg-[#0a0a0a]">
           <div className="container mx-auto px-6 md:px-12">
             <motion.div 
               initial="hidden"
@@ -185,17 +337,12 @@ export const About = () => {
               className="flex flex-col md:flex-row gap-16 lg:gap-24 items-center"
             >
               <motion.div variants={fadeUp} className="w-full md:w-5/12">
-                <div className="relative aspect-[3/4] w-full max-w-md mx-auto rounded-[2rem] overflow-hidden border border-white/10 p-2">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#d49942]/20 to-transparent rounded-[2rem] opacity-50" />
+                <div className="relative aspect-[3/4] w-full max-w-md mx-auto rounded-[2rem] overflow-hidden border border-white/10 p-2 shadow-2xl group">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#d49942]/20 to-transparent rounded-[2rem] opacity-40 pointer-events-none z-10" />
                   <img 
-                    src="/assets/images/founder-portrait.png" 
-                    alt="Founder" 
-                    className="w-full h-full object-cover rounded-[1.5rem] grayscale hover:grayscale-0 transition-all duration-700"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                      e.currentTarget.parentElement!.classList.add('bg-[#111]');
-                      e.currentTarget.parentElement!.innerHTML = '<div class="w-full h-full flex items-center justify-center text-white/20 font-serif text-2xl">Portrait</div>';
-                    }}
+                    src="/take1.webp" 
+                    alt="Founder & Director" 
+                    className="w-full h-full object-cover rounded-[1.5rem] transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
               </motion.div>

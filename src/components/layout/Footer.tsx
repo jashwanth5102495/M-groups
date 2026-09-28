@@ -69,9 +69,6 @@ export const Footer = () => {
         {/* Footer Bottom */}
         <div className="pt-8 border-t border-[#111] flex flex-col md:flex-row justify-between items-center gap-6">
           <h2 className="text-4xl md:text-5xl font-serif text-secondary/20">BUILDING LEGACIES.</h2>
-          <p className="text-xs text-secondary/40 tracking-wider">
-            © {new Date().getFullYear()} M GROUPS. ALL RIGHTS RESERVED.
-          </p>
         </div>
       </div>
     </footer>
