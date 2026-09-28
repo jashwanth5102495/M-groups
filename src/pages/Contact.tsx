@@ -1,3 +1,4 @@
+// M Groups Contact Page - Interactive Form & WhatsApp Integration (+91 97433 99992)
 import { useState, FormEvent } from 'react';
 import { PageTransition } from '../components/ui/PageTransition';
 import { motion } from 'framer-motion';
