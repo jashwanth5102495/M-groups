@@ -20,25 +20,21 @@ const heroCards = [
   {
     id: 'real-estate',
     title: 'Smart Homes, Smarter Future: Integrating Technology in Eco-Friendly Designs',
-    date: '12 FEB 2026',
     img: '/landing/M Real Estate.webp'
   },
   {
     id: 'interiors',
     title: 'Minimalism in Interior Design: Increasing Tranquility for Modern Living',
-    date: '15 JAN 2026',
     img: '/landing/M Interiors.webp'
   },
   {
     id: 'farms',
     title: 'Sustainable Agriculture: Harmonizing Nature & Future Yields',
-    date: '08 DEC 2025',
     img: '/landing/M Farms.webp'
   },
   {
     id: 'builders',
     title: 'Architectural Excellence: Crafting Sustainable Landmarks of Tomorrow',
-    date: '20 NOV 2025',
     img: '/landing/MS Builders & Developers.webp'
   }
 ];
@@ -213,13 +209,9 @@ export const About = () => {
 
                       {/* Text positioned directly inside the white notch cutout area */}
                       <div className="absolute bottom-0 left-0 w-[54%] sm:w-[52%] h-[29.5%] p-3 sm:p-5 flex flex-col justify-end text-neutral-900 z-10 pointer-events-none">
-                        <h3 className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-neutral-900 leading-tight tracking-tight mb-2 font-sans line-clamp-3">
+                        <h3 className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-neutral-900 leading-tight tracking-tight font-sans line-clamp-3">
                           {card.title}
                         </h3>
-                        
-                        <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.15em] text-neutral-500 uppercase block">
-                          {card.date}
-                        </span>
                       </div>
                     </motion.div>
                   ))}
