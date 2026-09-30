@@ -332,7 +332,7 @@ export const About = () => {
                 <div className="relative aspect-[3/4] w-full max-w-md mx-auto rounded-[2rem] overflow-hidden border border-white/10 p-2 shadow-2xl group">
                   <div className="absolute inset-0 bg-gradient-to-tr from-[#d49942]/20 to-transparent rounded-[2rem] opacity-40 pointer-events-none z-10" />
                   <img 
-                    src="/take1.webp" 
+                    src="/a.webp" 
                     alt="Founder & Director" 
                     className="w-full h-full object-cover rounded-[1.5rem] transition-transform duration-700 group-hover:scale-105"
                   />
